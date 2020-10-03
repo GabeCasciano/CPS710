@@ -73,7 +73,7 @@ TOKEN :
 |   < RCURLY: "}">
 |   < COMMA: ",">
 |   < SEMICOL: ";">
-|   < IDENTIFIER: ["a"-"z"](["0"-"9"])* >
+|   < IDENTIFIER: (["a"-"z"])+(["0"-"9"])* >
 |   < STRING: ("\"")["a"-"z"](["0"-"9"])*("\"") >
 |   < NUMBER: (["0"-"9"])+>
 }
