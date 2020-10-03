@@ -1,4 +1,4 @@
-class TestHL {
+class TestHLB {
 
     public static void main(String args[]) {
 	
