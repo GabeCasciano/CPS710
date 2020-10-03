@@ -1,0 +1,29 @@
+options {
+  IGNORE_CASE=false;
+}
+
+PARSER_BEGIN(HL)
+
+public class HL {
+}
+
+PARSER_END(HL)
+
+TOKEN_MGR_DECLS : 
+{
+
+}
+
+SKIP : 
+{
+  " "     
+  | "\t"    
+  | "\n"    
+  | "\r" 
+}
+
+TOKEN : 
+{
+	< ELSE: "else">
+|	< FOR: "for">
+}
