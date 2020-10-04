@@ -1,12 +1,9 @@
 public class IdentifierToken extends Token{
     public String value;
 
-    public IdentifierToken(){
-        this.value = super.image;
-    }
-
     @Override
     public String getValue() {
+        this.value = super.image;
         return value;
     }
 }
