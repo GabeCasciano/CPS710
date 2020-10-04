@@ -16,13 +16,17 @@ TOKEN_MGR_DECLS :
 
 SKIP : 
 {
-  " "     
-  | "\t"    
-  | "\n"    
+  " "
+  | "\t"
+  | "\n"
   | "\r"
   | "\"
-  |  < "//" (~["\r", "\n"])* >
-  | < "/*" > : MULTI_COMMENT
+}
+
+SKIP:
+{
+    < "//" (~["\r", "\n"])* >
+|   < "/*" > : MULTI_COMMENT
 }
 
 <MULTI_COMMENT> SKIP :
