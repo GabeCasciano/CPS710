@@ -30,8 +30,8 @@ SKIP:
 
 <MULTI_COMMENT> SKIP :
 {
-  < "*/" > : DEFAULT
-| < ~[] >
+  < ((~[])*)"*/" >
+| < "*/" > : DEFAULT
 }
 
 TOKEN :
