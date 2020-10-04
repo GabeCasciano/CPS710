@@ -1,0 +1,6 @@
+./t 2Cb-1-keywords
+./t 2Cb-2-simpletokens
+./t 2Bb-1-identifiers
+./t 2Bb-2-strings
+./t 2Bb-3-numbers
+./t 2Ab-comments

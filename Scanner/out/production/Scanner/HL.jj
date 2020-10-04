@@ -1,0 +1,94 @@
+options {
+  IGNORE_CASE=false;
+}
+
+PARSER_BEGIN(HL)
+
+public class HL {
+}
+
+PARSER_END(HL)
+
+TOKEN_MGR_DECLS : 
+{
+
+}
+
+SKIP : 
+{
+  " "
+  | "\t"
+  | "\n"
+  | "\r"
+}
+
+SKIP:
+{
+    < "//" (~["\r", "\n"])* >
+|   < "/*" > : MULTI_COMMENT
+}
+
+<MULTI_COMMENT> SKIP :
+{
+  < "*/" > : DEFAULT
+| < ~[] >
+}
+
+
+TOKEN :
+{
+    < FOR: "for">
+|   < NUM: "num">
+|   < STR: "str">
+|   < SET: "set">
+|   < OBJ: "obj">
+|   < ISA: "isa">
+|   < FROM: "from">
+|   < TO: "to">
+|   < DO: "do">
+|   < OD: "od">
+|   < WHILE: "while">
+|   < IF: "if">
+|   < THEN: "then">
+|   < ELIF: "elif">
+|   < ELSE: "else">
+|   < FI: "fi">
+|   < FUNCTION: "function">
+|   < SUB: "sub">
+|   < PREDICATE: "predicate">
+|   < RETURN: "return">
+|   < END: "end">
+|   < PRINT: "print">
+|   < PRINTLN: "println">
+|   < TRUE: "true">
+|   < FALSE: "false">
+|   < NULL: "null">
+|   < LESS: "<">
+|   < LESSEQ: "<=">
+|   < GREATER: ">">
+|   < GREATEREQ: ">=">
+|   < NOTCOMP: "<>">
+|   < EQUAL: "==">
+|   < NOTEQ: "!=">
+|   < IN: "=in">
+|   < NOTIN: "!in">
+|   < PLUS: "+">
+|   < MINUS: "-">
+|   < PROD: "*">
+|   < DIV: "/">
+|   < MOD: "%">
+|   < AND: "&">
+|   < OR: "|">
+|   < NOT: "!">
+|   < ASSIGN: "=">
+|   < LPAREN: "(">
+|   < RPAREN: ")">
+|   < LCURLY: "{">
+|   < RCURLY: "}">
+|   < COMMA: ",">
+|   < SEMICOL: ";">
+|   < IDENTIFIER: (["a"-"z", "A"-"Z"])+(["a"-"z", "A"-"Z", "0"-"9", "_"])* >
+|   < NUMBER: (["0"-"9"])+>
+|   < STRING: "\"" ((~["\""])|("\\"~[]))* "\"" >
+|   < OTHER : ~[] > // So the scanner doesn't crash
+}
