@@ -25,13 +25,7 @@ SKIP :
 SKIP:
 {
     < "//" (~["\r", "\n"])* >
-|   < "/*" > : MULTI_COMMENT
-}
-
-<MULTI_COMMENT> SKIP :
-{
-  < ((~[])*)"*/" >
-| < "*/" > : DEFAULT
+|   < "/*" ((~[])*) "*/" > 
 }
 
 TOKEN :
