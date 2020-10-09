@@ -11,7 +11,6 @@ public class NumberToken extends Token{
 
     @Override
     public String toString(){
-        this.value = new BigInteger(super.image);
         return value.toString();
     }
 }
