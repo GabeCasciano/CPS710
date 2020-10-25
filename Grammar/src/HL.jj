@@ -1,6 +1,5 @@
 options {
-  IGNORE_CASE=true;
-  DEBUG_PARSER=false;
+  IGNORE_CASE=false;
 }
 
 PARSER_BEGIN(HL)
@@ -12,143 +11,41 @@ PARSER_END(HL)
 
 TOKEN_MGR_DECLS : 
 {
-public static int commentdepth = 0;
+
 }
 
-SKIP : {
+SKIP : 
+{
   " "     
   | "\t"    
   | "\n"    
-  | "\r"    
-  }
-
-TOKEN : 
-{
-  < AND:  "&">
-|	< ASSIGN:	"=">
-|	< COMMA:	",">
-|	< DIV:	"/">
-|	< EQUAL:	"==">
-|	< GREATEQ:	">=">
-|	< GREATER:	">">
-| < ISIN:   "=in">
-|	< LESSEQ:	"<=">
-|	< LESS:	"<">
-|	< LCURLY:	"{">
-|	< LPAREN:	"(">
-| < MOD: "%">
-|	< MINUS:	"-">
-| < NOTCOMP: "<>">
-|	< NOTEQ:	"!=">
-| < NOTIN: "!in">
-|	< NOT:"!">
-|	< OR:"|">
-| < PLUS:	"+">
-|	< PROD:	"*">
-|	< RCURLY:	"}">
-|	< RPAREN:	")">
-|	< SEMICOL:	";">
-}
-TOKEN : 
-{
-	< DO:"DO">
-|	< ELIF:"ELIF">
-|	< ELSE:"ELSE">
-|	< END:"END">
-| < FALSE:"FALSE">
-|	< FI:"FI">
-|	< FOR:"FOR">
-| < FROM:"FROM">
-|	< FUNCTION:"FUNCTION">
-|	< IF:"IF">
-| < IN:"IN">
-| < ISA:"ISA">
-| < NULL:"NULL">
-|	< NUM:"NUM">
-| < OBJ:"OBJ">
-|	< OD:"OD">
-| < PREDICATE:"PREDICATE">
-|	< PRINT:"PRINT">
-|	< PRINTLN:"PRINTLN">
-|	< RETURN:"RETURN">
-| < SET: "SET">
-| < SUB: "SUB">
-|	< STR:"STR">
-|	< THEN:"THEN">
-| < TO:"TO">
-| < TRUE:"TRUE">
-|	< WHILE:"WHILE">
+  | "\r" 
 }
 
 TOKEN : 
 {
-	< #DIGIT:	["0"-"9"]>
-|	< #LETTER:	["a"-"z","A"-"Z"]>
-|	< NUMBER:	(<DIGIT>)+ >
-|	< IDENTIFIER:	<LETTER>(<LETTER>|<DIGIT>)* >
+	< A: "a">
+|	< PLUS: "+">
+| < TIMES: "*">
+}
+ // ===========================================================================
+//                                 P A R S E R   
+// ===========================================================================
+
+void start	() :
+{}
+{	expression() ";"
+| < EOF > {throw new ParseException("End of File.");}
 }
 
-// ---------------------- PROCESSING STRING TOKEN ----------------------------
-
-MORE:
-{   <"\"" >    : INSTRING
-}
-<INSTRING> MORE:
-{   < "\\\\" >
-|   < "\\\"" >
-|   < "\\t" >
-|   < "\\n" >
-}
-<INSTRING> TOKEN:
-{   <STRING: "\""> : DEFAULT
-}
-<INSTRING> MORE:
-{
-    < ["0"-"9"] >
-|   < ["a"-"z","A"-"Z"] >
-|   < ["`", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+"] >
-|   < ["[", "{", "]", "}", "|"] >
-|   < [";", ":", "'"] >
-|   < ["," , "<" , "." , ">" , "/" , "?", " "] >
+void expression () :
+{}
+{  LOOKAHEAD(term() <PLUS>) term() <PLUS> expression() 
+|  term()
 }
 
-// ---------------------- PROCESSING COMMENTS     ----------------------------
-
-SPECIAL_TOKEN : {
-        <COMMENT_SINGLE: "//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")>
-    }
-
-MORE:
-{   < "/*" >    : INCOMMENT0
-}
-
-<INCOMMENT0> SPECIAL_TOKEN:
-{
-    < COMMENT_MULTI: "*/" > :   DEFAULT
-}
-
-<INCOMMENT0> MORE:
-{
-    < "/*" > {commentdepth++;}  : INCOMMENT1
-|   < ~[] >
-}
-
-<INCOMMENT1> MORE:
-{
-    < "/*" > {commentdepth++;}
-|   < "*/" > {commentdepth--; if (commentdepth==0) SwitchTo(INCOMMENT0); }
-|   <~[]>
-}
-
-// ---------------------------------------------------------------------------
-// -----------------------------  PARSING    ---------------------------------
-// ---------------------------------------------------------------------------
-
-void start():{}
-{ expression() ";"
-|   < EOF > {throw new ParseException("END OF FILE"); } }
-
-void expression():{}
-{
-    < AND >
+void term () :
+{}
+{  LOOKAHEAD(2) <A> <TIMES> term()
+|  <A>
 }
