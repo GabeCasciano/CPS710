@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CPS710.iml" filepath="$PROJECT_DIR$/CPS710.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Grammar/Grammar.iml" filepath="$PROJECT_DIR$/../Grammar/Grammar.iml" />
     </modules>
   </component>
 </project>
