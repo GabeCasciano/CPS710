@@ -9,114 +9,118 @@ public interface HLConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int FOR = 5;
+  int FOR = 9;
   /** RegularExpression Id. */
-  int NUM = 6;
+  int NUM = 10;
   /** RegularExpression Id. */
-  int STR = 7;
+  int STR = 11;
   /** RegularExpression Id. */
-  int SET = 8;
+  int SET = 12;
   /** RegularExpression Id. */
-  int OBJ = 9;
+  int OBJ = 13;
   /** RegularExpression Id. */
-  int ISA = 10;
+  int ISA = 14;
   /** RegularExpression Id. */
-  int FROM = 11;
+  int FROM = 15;
   /** RegularExpression Id. */
-  int TO = 12;
+  int TO = 16;
   /** RegularExpression Id. */
-  int DO = 13;
+  int DO = 17;
   /** RegularExpression Id. */
-  int OD = 14;
+  int OD = 18;
   /** RegularExpression Id. */
-  int WHILE = 15;
+  int WHILE = 19;
   /** RegularExpression Id. */
-  int IF = 16;
+  int IF = 20;
   /** RegularExpression Id. */
-  int THEN = 17;
+  int THEN = 21;
   /** RegularExpression Id. */
-  int ELIF = 18;
+  int ELIF = 22;
   /** RegularExpression Id. */
-  int ELSE = 19;
+  int ELSE = 23;
   /** RegularExpression Id. */
-  int FI = 20;
+  int FI = 24;
   /** RegularExpression Id. */
-  int FUNCTION = 21;
+  int FUNCTION = 25;
   /** RegularExpression Id. */
-  int SUB = 22;
+  int SUB = 26;
   /** RegularExpression Id. */
-  int PREDICATE = 23;
+  int PREDICATE = 27;
   /** RegularExpression Id. */
-  int RETURN = 24;
+  int RETURN = 28;
   /** RegularExpression Id. */
-  int END = 25;
+  int END = 29;
   /** RegularExpression Id. */
-  int PRINT = 26;
+  int PRINT = 30;
   /** RegularExpression Id. */
-  int PRINTLN = 27;
+  int PRINTLN = 31;
   /** RegularExpression Id. */
-  int TRUE = 28;
+  int TRUE = 32;
   /** RegularExpression Id. */
-  int FALSE = 29;
+  int FALSE = 33;
   /** RegularExpression Id. */
-  int NULL = 30;
+  int NULL = 34;
   /** RegularExpression Id. */
-  int LESS = 31;
+  int LESS = 35;
   /** RegularExpression Id. */
-  int LESSEQ = 32;
+  int LESSEQ = 36;
   /** RegularExpression Id. */
-  int GREATER = 33;
+  int GREATER = 37;
   /** RegularExpression Id. */
-  int GREATEREQ = 34;
+  int GREATEREQ = 38;
   /** RegularExpression Id. */
-  int NOTCOMP = 35;
+  int NOTCOMP = 39;
   /** RegularExpression Id. */
-  int EQUAL = 36;
+  int EQUAL = 40;
   /** RegularExpression Id. */
-  int NOTEQ = 37;
+  int NOTEQ = 41;
   /** RegularExpression Id. */
-  int IN = 38;
+  int IN = 42;
   /** RegularExpression Id. */
-  int NOTIN = 39;
+  int NOTIN = 43;
   /** RegularExpression Id. */
-  int PLUS = 40;
+  int PLUS = 44;
   /** RegularExpression Id. */
-  int MINUS = 41;
+  int MINUS = 45;
   /** RegularExpression Id. */
-  int PROD = 42;
+  int PROD = 46;
   /** RegularExpression Id. */
-  int DIV = 43;
+  int DIV = 47;
   /** RegularExpression Id. */
-  int MOD = 44;
+  int MOD = 48;
   /** RegularExpression Id. */
-  int AND = 45;
+  int AND = 49;
   /** RegularExpression Id. */
-  int OR = 46;
+  int OR = 50;
   /** RegularExpression Id. */
-  int NOT = 47;
+  int NOT = 51;
   /** RegularExpression Id. */
-  int ASSIGN = 48;
+  int ASSIGN = 52;
   /** RegularExpression Id. */
-  int LPAREN = 49;
+  int LPAREN = 53;
   /** RegularExpression Id. */
-  int RPAREN = 50;
+  int RPAREN = 54;
   /** RegularExpression Id. */
-  int LCURLY = 51;
+  int LCURLY = 55;
   /** RegularExpression Id. */
-  int RCURLY = 52;
+  int RCURLY = 56;
   /** RegularExpression Id. */
-  int COMMA = 53;
+  int COMMA = 57;
   /** RegularExpression Id. */
-  int SEMICOL = 54;
+  int SEMICOL = 58;
   /** RegularExpression Id. */
-  int IDENTIFIER = 55;
+  int IDENTIFIER = 59;
   /** RegularExpression Id. */
-  int STRING = 56;
+  int NUMBER = 60;
   /** RegularExpression Id. */
-  int NUMBER = 57;
+  int STRING = 61;
+  /** RegularExpression Id. */
+  int OTHER = 62;
 
   /** Lexical state. */
   int DEFAULT = 0;
+  /** Lexical state. */
+  int MULTI_COMMENT = 1;
 
   /** Literal token values. */
   String[] tokenImage = {
@@ -125,6 +129,10 @@ public interface HLConstants {
     "\"\\t\"",
     "\"\\n\"",
     "\"\\r\"",
+    "<token of kind 5>",
+    "\"/*\"",
+    "\"*/\"",
+    "<token of kind 8>",
     "\"for\"",
     "\"num\"",
     "\"str\"",
@@ -176,8 +184,9 @@ public interface HLConstants {
     "\",\"",
     "\";\"",
     "<IDENTIFIER>",
-    "<STRING>",
     "<NUMBER>",
+    "<STRING>",
+    "<OTHER>",
   };
 
 }
