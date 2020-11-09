@@ -1,0 +1,5 @@
+./tb 4Cd1-declarations-returns
+./tb 4Cd2-if-comparisons
+./tb 4Ab-nodification
+./tb 4Bc1-simple
+./tb 4Bc2-miscellaneous

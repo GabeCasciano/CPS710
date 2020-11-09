@@ -149,7 +149,7 @@ MORE:
 
 void start	() :
 {}
-{	statement() | expression()
+{	statement() /*| expression()*/
 | < EOF > {throw new ParseException("End of File.");}
 }
 
@@ -157,13 +157,13 @@ void statement () : // LL(1)
 {}
 {
    (declaration()
-|   assignment()
+/*|   assignment()
 |   if_stat()
 |   for_stat()
 |   while_stat()
 |   fn_call()
 |   print_stat()
-|   return_stat() )+ ";"
+|   return_stat() */)+ ";"
 }
 
 void body () : // LL(1)
@@ -181,17 +181,15 @@ void clause () : // LL(1)
 void declaration() : // LL(1)
 {}
 {
-    type() decleration_prime()
+    (type() decleration_prime())
+|   sub_decleration()
+|   predicate_decleration()
 }
 
 void decleration_prime(): //left factoring to reduce lookahead, LL(1)
 {}
 {
-// this may be ambiguous
-    fn_decleration()
-|   simple_decleration()
-|   sub_decleration()
-|   predicate_decleration()
+   fn_decleration() | simple_decleration()
 }
 
 void simple_decleration() : // LL(1)
@@ -241,17 +239,8 @@ void param_declerations():
     type() <IDENTIFIER> identifier_list()
 }
 
-void identifier_list(): // replaced param_decel modified param_decels^^,
-// this may be recursive
+void identifier_list(): // replaced param_decel modified param_decels^^
 {}
 {
     <IDENTIFIER> ("," <IDENTIFIER> )*
 }
-
-void assignment():
-{}
-{
-    <IDENTIFIER> "=" expression()
-}
-
-

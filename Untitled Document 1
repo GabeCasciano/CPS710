@@ -1,0 +1,23 @@
+Push S' on stack
+token = nexttoken()
+
+do{
+	top = pop() \\get the top of the stack
+	
+	if(token == top)
+		token = nexttoken() \\ consume token
+	else if(LLtable(top, tokem) != null)
+		\\ Push symbols corresponding to Non-Terminal to the stack
+		push reverse_order(LLtable(top,token))
+	else 
+		syntax error
+
+
+}while(top = $ or token = $)
+
+if(top != token) 
+	syntax error
+	
+	
+	
+	

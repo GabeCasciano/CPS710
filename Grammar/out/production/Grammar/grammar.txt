@@ -1,0 +1,149 @@
+start		::=	statement | expression ";"
+
+statement	::=	(declaration | assignment | if_stat | for_stat | while_stat
+			| fn_call | print_stat | println_stat |return_stat ) ";"
+
+body		::=	(statement)*
+
+clause		::=	(statement)+
+
+declaration	::=	simple_decl | fn_decl | sub_decl | predicate_decl
+
+simple_decl	::=	type ident_list
+
+fn_decl		::=	type <FUNCTION> <IDENTIFIER> "(" (param_decls)0 ")" body <END>
+
+sub_decl	::=	<SUB> <IDENTIFIER>  "(" (param_decls)0 ")" body <END>
+
+predicate_decl	::=	<PREDICATE>  <IDENTIFIER>  "(" (param_decls)0 ")" body <END>
+
+type		::=	<NUM> | <STR> | <SET> | <OBJ>
+
+ident_list	::=	<IDENTIFIER> ("," <IDENTIFIER>)*
+
+param_decls	::=	param_decl ("," param_decl)*
+
+param_decl	::=	type <IDENTIFIER>
+
+assignment      ::=     <IDENTIFIER> "=" expression
+
+if_stat		::=	<IF> condition <THEN> clause elifs (<ELSE> clause)0 <FI>
+
+elifs		::=	(<ELIF> condition <THEN> clause)*
+
+for_stat	::=	for_explicit | for_implicit
+
+for_explicit	::=	<FOR> <IDENTIFIER> <FROM> expression <TO> expression <DO> body <OD>
+
+for_implicit	::=	<FOR> <IDENTIFIER> <IN> expression <DO> body <OD>
+
+while_stat	::=	<WHILE> condition <DO> body <OD>
+
+fn_call		::=	<IDENTIFIER> "(" (parameters)0 ")"
+
+parameters	::=	expression ("," expression)*
+
+print_stat  ::= <PRINT> parameters
+
+println_stat  ::= <PRINTLN> (parameters)0
+
+return_stat	::=	<RETURN> (expression | <TRUE> | <FALSE> | <NULL> )0
+
+condition	::=	and_clause ("|" condition)*
+
+and_clause	::=	not_clause ("&" and_clause)*
+
+not_clause	::=	"!" not_clause | "(" condition ")" | comparison | isatype | fn_call
+
+comparison	::=	expression comparator expression
+
+comparator	::=	"<" | "<=" | ">" | ">=" | "<>" | "==" | "!=" | "=in" | "!in"
+
+isatype		::=	term <ISA> type
+
+expression	::=	product (("+" | "-") expression)*
+
+product		::=	term (("*" | "/" | "%") product)*
+
+term		::=	"(" expression ")" | fn_call | simple_term
+
+simple_term	::=	<IDENTIFIER> | set_const| <NUMBER> | <STRING> | <NULL>
+
+set_const	::=	"{"  (set_elements)0 "}"
+
+set_elements	::=	expression ("," expression)*
+start		::=	statement | expression ";"
+
+statement	::=	(declaration | assignment | if_stat | for_stat | while_stat
+			| fn_call | print_stat | println_stat |return_stat ) ";"
+
+body		::=	(statement)*
+
+clause		::=	(statement)+
+
+declaration	::=	simple_decl | fn_decl | sub_decl | predicate_decl
+
+simple_decl	::=	type ident_list
+
+fn_decl		::=	type <FUNCTION> <IDENTIFIER> "(" (param_decls)0 ")" body <END>
+
+sub_decl	::=	<SUB> <IDENTIFIER>  "(" (param_decls)0 ")" body <END>
+
+predicate_decl	::=	<PREDICATE>  <IDENTIFIER>  "(" (param_decls)0 ")" body <END>
+
+type		::=	<NUM> | <STR> | <SET> | <OBJ>
+
+ident_list	::=	<IDENTIFIER> ("," <IDENTIFIER>)*
+
+param_decls	::=	param_decl ("," param_decl)*
+
+param_decl	::=	type <IDENTIFIER>
+
+assignment      ::=     <IDENTIFIER> "=" expression
+
+if_stat		::=	<IF> condition <THEN> clause elifs (<ELSE> clause)0 <FI>
+
+elifs		::=	(<ELIF> condition <THEN> clause)*
+
+for_stat	::=	for_explicit | for_implicit
+
+for_explicit	::=	<FOR> <IDENTIFIER> <FROM> expression <TO> expression <DO> body <OD>
+
+for_implicit	::=	<FOR> <IDENTIFIER> <IN> expression <DO> body <OD>
+
+while_stat	::=	<WHILE> condition <DO> body <OD>
+
+fn_call		::=	<IDENTIFIER> "(" (parameters)0 ")"
+
+parameters	::=	expression ("," expression)*
+
+print_stat  ::= <PRINT> parameters
+
+println_stat  ::= <PRINTLN> (parameters)0
+
+return_stat	::=	<RETURN> (expression | <TRUE> | <FALSE> | <NULL> )0
+
+condition	::=	and_clause ("|" condition)*
+
+and_clause	::=	not_clause ("&" and_clause)*
+
+not_clause	::=	"!" not_clause | "(" condition ")" | comparison | isatype | fn_call
+
+comparison	::=	expression comparator expression
+
+comparator	::=	"<" | "<=" | ">" | ">=" | "<>" | "==" | "!=" | "=in" | "!in"
+
+isatype		::=	term <ISA> type
+
+expression	::=	product (("+" | "-") expression)*
+
+product		::=	term (("*" | "/" | "%") product)*
+
+term		::=	"(" expression ")" | fn_call | simple_term
+
+simple_term	::=	<IDENTIFIER> | set_const| <NUMBER> | <STRING> | <NULL>
+
+set_const	::=	"{"  (set_elements)0 "}"
+
+set_elements	::=	expression ("," expression)*
+
