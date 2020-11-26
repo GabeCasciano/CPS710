@@ -1,0 +1,1 @@
+sed -f visitor.sed <AST/HLVisitor.java >HLEval.java

@@ -1,0 +1,6 @@
+notes:
+
+http://cps710.scs.ryerson.ca/F20/A4/
+http://cps710.scs.ryerson.ca/F20/A4/Handouts/
+http://cps710.scs.ryerson.ca/F20/A4/semantics.pdf
+http://cps710.scs.ryerson.ca/~cps710/Material/Quigley/JJTree/Eval/
